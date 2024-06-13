@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.0.1 (Python 3.12.4 on win32)" generated="2024-06-13T18:10:23.764496" rpa="false" schemaversion="5">
+<suite id="s1" name="Products" source="c:\SauceDemoWebsiteProject\Tests\Products.robot">
+<test id="s1-t1" name="Filter Products" line="15">
+<kw name="Open Browser" owner="SeleniumLibrary" type="SETUP">
+<msg time="2024-06-13T18:10:24.301782" level="INFO">Opening browser 'chrome' to base url 'https://www.saucedemo.com/'.</msg>
+<arg>${url}</arg>
+<arg>${Browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2024-06-13T18:10:24.298768" elapsed="3.211519"/>
+</kw>
+<kw name="Login To sauce" owner="Login">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-06-13T18:10:27.523219" level="INFO">Typing text 'standard_user' into text field 'user-name'.</msg>
+<arg>user-name</arg>
+<arg>standard_user</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-06-13T18:10:27.522220" elapsed="0.274712"/>
+</kw>
+<kw name="Input Password" owner="SeleniumLibrary">
+<msg time="2024-06-13T18:10:27.796932" level="INFO">Typing password into text field 'password'.</msg>
+<msg time="2024-06-13T18:10:27.885875" level="INFO">Temporally setting log level to: NONE</msg>
+<arg>password</arg>
+<arg>secret_sauce</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-06-13T18:10:27.796932" elapsed="0.175583"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-06-13T18:10:27.972515" level="INFO">Clicking button 'login-button'.</msg>
+<arg>login-button</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-06-13T18:10:27.972515" elapsed="0.231080"/>
+</kw>
+<doc>keyword for login</doc>
+<status status="PASS" start="2024-06-13T18:10:27.510287" elapsed="0.693308"/>
+</kw>
+<kw name="Apply Filter" owner="Filter Products">
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2024-06-13T18:10:28.203595" elapsed="0.059148"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>//select[@class="product_sort_container"]</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-06-13T18:10:28.262743" elapsed="0.095721"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-06-13T18:10:28.358464" level="INFO">Clicking element '//select[@class="product_sort_container"]'.</msg>
+<arg>//select[@class="product_sort_container"]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-06-13T18:10:28.358464" elapsed="0.137294"/>
+</kw>
+<kw name="Select From List By Label" owner="SeleniumLibrary">
+<msg time="2024-06-13T18:10:28.496754" level="INFO">Selecting options from selection list '//select[@class="product_sort_container"]' by label Name (A to Z).</msg>
+<arg>//select[@class="product_sort_container"]</arg>
+<arg>${label}</arg>
+<doc>Selects options from selection list ``locator`` by ``labels``.</doc>
+<status status="PASS" start="2024-06-13T18:10:28.496754" elapsed="0.103617"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>//div[@class="inventory_list"]</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2024-06-13T18:10:28.600371" elapsed="0.017239"/>
+</kw>
+<arg>Name (A to Z)</arg>
+<status status="PASS" start="2024-06-13T18:10:28.203595" elapsed="0.414015"/>
+</kw>
+<kw name="Get Dropdown Items" owner="Filter Products">
+<kw name="Get WebElements" owner="SeleniumLibrary">
+<msg time="2024-06-13T18:10:28.621643" level="INFO">${options} = [&lt;selenium.webdriver.remote.webelement.WebElement (session="41ca481e46401a778e5786d7fe0c2081", element="f.6C663273C1388AD151979619839EFB94.d.AA0DA4714A5A2BFBDB4C8F9F0FB58434.e.27")&gt;]</msg>
+<var>${options}</var>
+<arg>//div[@class="inventory_list"]</arg>
+<doc>Returns a list of WebElement objects matching the ``locator``.</doc>
+<status status="PASS" start="2024-06-13T18:10:28.620603" elapsed="0.001040"/>
+</kw>
+<kw name="Create List" owner="BuiltIn">
+<msg time="2024-06-13T18:10:28.621643" level="INFO">${items} = []</msg>
+<var>${items}</var>
+<doc>Returns a list containing given items.</doc>
+<status status="PASS" start="2024-06-13T18:10:28.621643" elapsed="0.000000"/>
+</kw>
+<for flavor="IN">
+<iter>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-06-13T18:10:28.690951" level="INFO">${text} = Sauce Labs Backpack
+carry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection.
+$29.99
+Add to cart
+Sauce Labs Bike Light
+A re...</msg>
+<var>${text}</var>
+<arg>${option}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-06-13T18:10:28.621643" elapsed="0.069308"/>
+</kw>
+<kw name="Append To List" owner="Collections">
+<arg>${items}</arg>
+<arg>${text}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" start="2024-06-13T18:10:28.690951" elapsed="0.000000"/>
+</kw>
+<var name="${option}">&lt;selenium.webdriver.remote.webelement.WebElement (session="41ca481e46401a778e5786d7fe0c2081", element="f.6C663273C1388AD151979619839EFB94.d.AA0DA4714A5A2BFBDB4C8F9F0FB58434.e.27")&gt;</var>
+<status status="PASS" start="2024-06-13T18:10:28.621643" elapsed="0.069308"/>
+</iter>
+<var>${option}</var>
+<value>@{options}</value>
+<status status="PASS" start="2024-06-13T18:10:28.621643" elapsed="0.069308"/>
+</for>
+<return>
+<value>${items}</value>
+<status status="PASS" start="2024-06-13T18:10:28.690951" elapsed="0.000000"/>
+</return>
+<msg time="2024-06-13T18:10:28.690951" level="INFO">${filtered_items} = ["Sauce Labs Backpack\ncarry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection.\n$29.99\nAdd to cart\nSauce Labs Bike Ligh...</msg>
+<var>${filtered_items}</var>
+<status status="PASS" start="2024-06-13T18:10:28.618607" elapsed="0.072344"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Filtered Dropdown Items: ${filtered_items}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2024-06-13T18:10:28.690951" elapsed="0.000000"/>
+</kw>
+<kw name="Validate Items Are Sorted Alphabetically" owner="Filter Products">
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-06-13T18:10:28.690951" level="INFO">${lowercase_items} = ["sauce labs backpack\ncarry.allthethings() with the sleek, streamlined sly pack that melds uncompromising style with unequaled laptop and tablet protection.\n$29.99\nadd to cart\nsauce labs bike ligh...</msg>
+<var>${lowercase_items}</var>
+<arg>[item.lower() for item in ${items}]</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-06-13T18:10:28.690951" elapsed="0.000000"/>
+</kw>
+<kw name="Copy List" owner="Collections">
+<msg time="2024-06-13T18:10:28.704428" level="INFO">${sorted_items} = ["sauce labs backpack\ncarry.allthethings() with the sleek, streamlined sly pack that melds uncompromising style with unequaled laptop and tablet protection.\n$29.99\nadd to cart\nsauce labs bike ligh...</msg>
+<var>${sorted_items}</var>
+<arg>${lowercase_items}</arg>
+<doc>Returns a copy of the given list.</doc>
+<status status="PASS" start="2024-06-13T18:10:28.703046" elapsed="0.002404"/>
+</kw>
+<kw name="Sort List" owner="Collections">
+<arg>${sorted_items}</arg>
+<doc>Sorts the given list in place.</doc>
+<status status="PASS" start="2024-06-13T18:10:28.705450" elapsed="0.000974"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${lowercase_items}</arg>
+<arg>${sorted_items}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2024-06-13T18:10:28.707418" elapsed="0.000999"/>
+</kw>
+<arg>${filtered_items}</arg>
+<status status="PASS" start="2024-06-13T18:10:28.690951" elapsed="0.017466"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2024-06-13T18:10:28.709413" elapsed="2.529977"/>
+</kw>
+<status status="PASS" start="2024-06-13T18:10:24.288961" elapsed="6.952454"/>
+</test>
+<status status="PASS" start="2024-06-13T18:10:23.776518" elapsed="7.465879"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Products">Products</stat>
+</suite>
+</statistics>
+<errors>
+<msg time="2024-06-13T18:10:24.288961" level="WARN">Error in file 'c:\SauceDemoWebsiteProject\Resources\Filter Products.resource' on line 30: The '[Return]' setting is deprecated. Use the 'RETURN' statement instead.</msg>
+</errors>
+</robot>
